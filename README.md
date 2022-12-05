@@ -13,11 +13,11 @@ Spark 3.3.1
 
 ### How to create and instantiate the containers:
 1. Download the dockerfile, jdk and spark. The jdk and spark installers must be inside a folder named downloads.
-├── ...
-├── downloads
-│   ├── jdk
-│   └── spark
-└── sparck.dockerfile
+├── ...  
+├── downloads   
+│   ├── jdk   
+│   └── spark   
+└── sparck.dockerfile   
 
 2. From the directory where is located the dockerfile, open cmd prompt and build the image "docker build -f spark.Dockerfile -t jmonc/spark-debian ."   
 3. Create a network "docker network create --driver bridge spark-network"     
