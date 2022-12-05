@@ -17,7 +17,7 @@ Spark 3.3.1
 ├── downloads   
 │   ├── jdk   
 │   └── spark   
-└── sparck.dockerfile   
+└── spark.dockerfile   
 
 2. From the directory where is located the dockerfile, open cmd prompt and build the image "docker build -f spark.Dockerfile -t jmonc/spark-debian ."   
 3. Create a network "docker network create --driver bridge spark-network"     
