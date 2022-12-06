@@ -1,0 +1,42 @@
+docker build -f spark.Dockerfile -t jmonc/spark-debian .
+docker network create --driver bridge spark-network
+
+docker run -d -t --name master --network spark-network -p 8080:8080 -p 7077:7077 jmonc/spark-debian
+docker run -d -t --name master-spark -v spark-volume:/aplicacoes --network spark-network -p 8080:8080 -p 7077:7077 jmonc/spark-debian
+docker exec master-spark start-master
+## http://localhost:8080/
+
+docker exec master python --version
+## 3.9.2
+
+#docker run -d -t --name worker-1 --network spark-network -p 8081:8081 jmonc/spark-debian
+docker run -d -t -m 512m --cpus 1 --name worker-spark-1 -v spark-volume:/aplicacoes  --network spark-network -p 8081:8081 jmonc/spark-debian
+docker exec worker-spark-1 start-worker spark://master-spark:7077
+## http://localhost:8081/
+
+#docker run -d -t --name worker-2 --network spark-network -p 8082:8081 jmonc/spark-debian
+docker run -d -t -m 512m --cpus 1 --name worker-spark-2 -v spark-volume:/aplicacoes  --network spark-network -p 8082:8081 jmonc/spark-debian
+docker exec worker-spark-2 start-worker spark://master-spark:7077
+
+
+python -m venv C:\python_env\392\sparck_venv
+spark-submit --master spark://localhost:7077 c:\python_code\teste\teste.py
+
+POWER SHELL
+Get-ExecutionPolicy
+Set-ExecutionPolicy RemoteSigned
+## ou Unrestricted
+New-Alias python3 python
+C:\python_env\392\sparck_venv\Scripts\activate
+c:\spark\bin\spark-submit --master spark://localhost:7077 teste.py
+spark-submit --master spark://7a954466f288:7077 teste.py
+spark-submit --master spark://7a954466f288:7077 teste_timer.py
+
+# obter o id do container
+docker ps
+# copiar arquivos para um container
+docker cp Compras-Compras.csv ca3e191bef9d:/home/apps/Compras-Compras.csv
+docker cp teste.py 7a954466f288:/aplicacoes/teste.py
+
+docker cp teste_timer.py 7a954466f288:/aplicacoes/teste_timer.py
+
