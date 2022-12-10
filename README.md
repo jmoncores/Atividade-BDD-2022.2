@@ -8,7 +8,7 @@ Docker Desktop 4.14.1 for Windows
 Base image debian:latest  
 Oracle jdk-17.0.5   
 Python 3.9.2  
-Ppyspark   
+Pyspark   
 Spark 3.3.1   
 
 ### How to create and instantiate the containers:
