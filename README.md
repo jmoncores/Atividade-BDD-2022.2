@@ -32,9 +32,13 @@ Spark 3.3.1
 "docker exec worker-spark-1 start-worker spark://master-spark:7077"   
 "docker exec worker-spark-2 start-worker spark://master-spark:7077"   
 
-### How to create and instantiate the containers:
-
-
+### How to run the scripts:
+1. Run "docker ps" to get the master node's id.   
+2. Run the commands below to copy the files to the spark volume. '7a954466f288' is the id of the master node. This volume is shared between the nodes.   
+"docker cp Compras-Compras.csv 7a954466f288:/home/apps/Compras-Compras.csv"   
+"docker cp teste_timer.py 7a954466f288:/aplicacoes/teste_timer.py"   
+3. Run the command to submit a spark job to the master node.
+"spark-submit --master spark://7a954466f288:7077 teste_timer.py"
 
 ### Credits:
 Thiago Melo at https://medium.com/@thiagolcmelo/submitting-a-python-job-to-apache-spark-on-docker-b2bd19593a06  
