@@ -32,7 +32,7 @@ Spark 3.3.1
 "docker exec worker-spark-1 start-worker spark://master-spark:7077"   
 "docker exec worker-spark-2 start-worker spark://master-spark:7077"   
 
-### How to run the scripts:
+### How to run the scripts from the host machine:
 1. Run "docker ps" to get the master node's id.   
 2. Run the commands below to copy the files to the spark volume. '7a954466f288' is the id of the master node. This volume is shared between the nodes.   
 "docker cp Compras-Compras.csv 7a954466f288:/home/apps/Compras-Compras.csv"   
